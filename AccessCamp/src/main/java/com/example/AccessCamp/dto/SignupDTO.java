@@ -8,5 +8,5 @@ import java.util.Set;
 
 @Data
 public class SignupDTO {
-    private List<ActivityDTO> activityList;
+    private List<ActivityDTO> activities;
 }

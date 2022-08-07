@@ -9,5 +9,6 @@ import java.util.Set;
 public class CamperDTO {
     private int id;
     private String name;
-    private List<SignupDTO> signupList;
+    private int age;
+    private List<SignupDTO> activities;
 }

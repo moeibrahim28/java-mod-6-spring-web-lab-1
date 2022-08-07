@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/campers")
+@RequestMapping("/campers/{camperId}/")
 public class ActivityController {
 
     // ActivityService Injection

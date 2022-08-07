@@ -1,6 +1,7 @@
 package com.example.AccessCamp.service;
 
 import com.example.AccessCamp.dto.CamperDTO;
+import com.example.AccessCamp.dto.CreateCamperDTO;
 import com.example.AccessCamp.models.Camper;
 import com.example.AccessCamp.repository.CamperRepository;
 import org.modelmapper.ModelMapper;
@@ -25,7 +26,7 @@ public class CamperService {
     @Autowired
     private ModelMapper mapper;
 
-    public CamperDTO createCamper(CamperDTO createDTO) {
+    public CamperDTO createCamper(CreateCamperDTO createDTO) {
         // Convert the HospitalCreateDTO to a Hospital entity
         Camper camper = mapper.map(createDTO, Camper.class);
         camper = camperRepository.save(camper);
