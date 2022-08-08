@@ -32,7 +32,7 @@ public class ActivityController {
 //        return ResponseEntity.ok(newActivity);
 //    }
 
-    @PostMapping("/activities")
+    @PostMapping
     public ActivityDTO createActivity(@Valid @RequestBody ActivityDTO activity) {
         return activityService.createActivity(activity);
     }

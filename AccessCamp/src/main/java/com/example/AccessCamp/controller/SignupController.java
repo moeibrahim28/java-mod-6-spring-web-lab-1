@@ -19,7 +19,7 @@ public class SignupController {
     @Autowired
     private SignupService signupService;
 
-    @PostMapping("/signups")
+    @PostMapping
     public SignupDTO createSignup(@Valid @RequestBody CreateSignupDTO signup) {
 
         return signupService.createSignup(signup);

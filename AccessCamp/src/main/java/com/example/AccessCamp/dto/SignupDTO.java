@@ -9,5 +9,5 @@ import java.util.Set;
 
 @Data
 public class SignupDTO {
-    private List<ActivityDTO> activities;
+    private List<ActivityDTO> activities = new ArrayList<>();
 }

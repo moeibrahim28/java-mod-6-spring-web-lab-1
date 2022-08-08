@@ -20,7 +20,7 @@ public class SignupService {
     private SignupRepository signupRepository; // field injection
 
     @Autowired
-    private ActivityRepository activityRepository;
+    private ActivityService activityService;
 
 
     @Autowired
@@ -29,14 +29,21 @@ public class SignupService {
     public SignupDTO createSignup(CreateSignupDTO createDTO) {
         // Convert the HospitalCreateDTO to a Hospital entity
         Signup signup = mapper.map(createDTO, Signup.class);
-        activityRepository.findById(signup.getActivity().getId());
-        signup = signupRepository.save(signup);
-        SignupDTO signupDTO = mapper.map(signup, SignupDTO.class);
-        ActivityDTO activityDTO = new ActivityDTO();
-        activityDTO.setDifficulty(signup.getActivity().getDifficulty());
-        activityDTO.setName(signup.getActivity().getName());
-        signupDTO.getActivities().add(activityDTO);
-        return signupDTO;
+ActivityDTO activityDTO = new ActivityDTO();
+        List<ActivityDTO> activityDTOList = activityService.getAllActivity();
+        activityDTO.setId(createDTO.getActivity_id());
+        if(activityDTOList.get(activityDTO.getId()-1)!=null){
+            signup = signupRepository.save(signup);
+            SignupDTO signupDTO = mapper.map(signup, SignupDTO.class);
+
+            activityDTO.setDifficulty(activityDTOList.get(activityDTO.getId()-1).getDifficulty());
+            activityDTO.setName(activityDTOList.get(activityDTO.getId()-1).getName());
+            signupDTO.getActivities().add(activityDTO);
+
+            return signupDTO;
+        }
+        else throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
     }
 
     public SignupDTO getSignup(long id) {
