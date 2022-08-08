@@ -2,6 +2,7 @@ package com.example.AccessCamp.controller;
 
 
 import com.example.AccessCamp.dto.ActivityDTO;
+import com.example.AccessCamp.dto.CamperDTO;
 import com.example.AccessCamp.models.Activity;
 import com.example.AccessCamp.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/campers/{camperId}/")
+@RequestMapping("/activities")
 public class ActivityController {
 
     // ActivityService Injection
@@ -74,6 +75,11 @@ public class ActivityController {
     @DeleteMapping("/activities/{activityId}")
     public void deleteActivity(@PathVariable(value = "activityId") Integer id) {
         activityService.deleteActivity(id);
+    }
+
+    @GetMapping // localhost:8080/camps GET
+    public List<ActivityDTO> getActivities() {
+        return activityService.getAllActivity();
     }
 
 }

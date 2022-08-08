@@ -13,13 +13,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/campers/{camperId}")
+@RequestMapping("/signups")
 public class SignupController {
     @Autowired
     private SignupService signupService;
 
     @PostMapping("/signups")
     public SignupDTO createSignup(@Valid @RequestBody SignupDTO signup) {
+
         return signupService.createSignup(signup);
     }
 
@@ -28,15 +29,15 @@ public class SignupController {
         return signupService.getAllSignup();
     }
 
-    @GetMapping("/activities/{activityId}")
-    public SignupDTO readActivity(@PathVariable(value = "signupId") Integer id) {
+    @GetMapping("/signups/{signupId}")
+    public SignupDTO readSignup(@PathVariable(value = "signupId") Integer id) {
         return signupService.getSignup(id);
     }
 
 
     // The @DeleteMapping is a shorthand for the @RequestMapping(value="/activities/{activityId}", method=RequestMethod.DELETE) annotation.
     // This method calls the deleteActivity method on the activityService class which removes the record with the given ID from the database.
-    @DeleteMapping("/activities/{activityId}")
+    @DeleteMapping("/signups/{signupId}")
     public void deleteSignup(@PathVariable(value = "signupId") Integer id) {
         signupService.deleteSignup(id);
     }

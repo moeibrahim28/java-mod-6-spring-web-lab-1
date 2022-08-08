@@ -1,7 +1,9 @@
 package com.example.AccessCamp.service;
 
 import com.example.AccessCamp.dto.SignupDTO;
+import com.example.AccessCamp.models.Activity;
 import com.example.AccessCamp.models.Signup;
+import com.example.AccessCamp.repository.ActivityRepository;
 import com.example.AccessCamp.repository.SignupRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,16 @@ public class SignupService {
     private SignupRepository signupRepository; // field injection
 
     @Autowired
+    private ActivityRepository activityRepository;
+
+    @Autowired
     private ModelMapper mapper;
 
     public SignupDTO createSignup(SignupDTO createDTO) {
         // Convert the HospitalCreateDTO to a Hospital entity
         Signup signup = mapper.map(createDTO, Signup.class);
+        Activity activity = activityRepository.findById(createDTO.getActivity_id()).get();
+        signup.setActivity(activity);
         signup = signupRepository.save(signup);
         return mapper.map(signup, SignupDTO.class);
     }
