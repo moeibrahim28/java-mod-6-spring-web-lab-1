@@ -1,7 +1,7 @@
 package com.example.AccessCamp.service;
 
+import com.example.AccessCamp.dto.ActivityDTO;
 import com.example.AccessCamp.dto.SignupDTO;
-import com.example.AccessCamp.models.Activity;
 import com.example.AccessCamp.models.Signup;
 import com.example.AccessCamp.repository.ActivityRepository;
 import com.example.AccessCamp.repository.SignupRepository;
@@ -21,16 +21,21 @@ public class SignupService {
     @Autowired
     private ActivityRepository activityRepository;
 
+
     @Autowired
     private ModelMapper mapper;
 
     public SignupDTO createSignup(SignupDTO createDTO) {
         // Convert the HospitalCreateDTO to a Hospital entity
         Signup signup = mapper.map(createDTO, Signup.class);
-        Activity activity = activityRepository.findById(createDTO.getActivity_id()).get();
-        signup.setActivity(activity);
+        activityRepository.findById(signup.getActivity().getId());
         signup = signupRepository.save(signup);
-        return mapper.map(signup, SignupDTO.class);
+        SignupDTO signupDTO = mapper.map(signup, SignupDTO.class);
+        ActivityDTO activityDTO = new ActivityDTO();
+        activityDTO.setDifficulty(signup.getActivity().getDifficulty());
+        activityDTO.setName(signup.getActivity().getName());
+        signupDTO.getActivities().add(activityDTO);
+        return signupDTO;
     }
 
     public SignupDTO getSignup(long id) {
