@@ -1,6 +1,7 @@
 package com.example.AccessCamp.controller;
 
 import com.example.AccessCamp.dto.ActivityDTO;
+import com.example.AccessCamp.dto.CreateSignupDTO;
 import com.example.AccessCamp.dto.SignupDTO;
 import com.example.AccessCamp.models.Activity;
 import com.example.AccessCamp.models.Signup;
@@ -19,7 +20,7 @@ public class SignupController {
     private SignupService signupService;
 
     @PostMapping("/signups")
-    public SignupDTO createSignup(@Valid @RequestBody SignupDTO signup) {
+    public SignupDTO createSignup(@Valid @RequestBody CreateSignupDTO signup) {
 
         return signupService.createSignup(signup);
     }
