@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 public class SignupDTO {
-    private int time;
+    private int id;
     private int camper_id;
     private int activity_id;
 }

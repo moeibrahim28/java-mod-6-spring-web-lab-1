@@ -33,7 +33,7 @@ public class Camper {
     private LocalDateTime updated_at;
 
     @OneToMany(mappedBy = "camper", fetch = FetchType.EAGER)
-    private List<Signup> signupList = new ArrayList<>();
+    private List<Signup> activities = new ArrayList<>();
 
 
 }

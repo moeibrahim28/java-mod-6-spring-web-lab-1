@@ -39,7 +39,7 @@ public class ActivityService {
         Activity activity = activityRepository.findById(id).get();
         activity.setName(activityData.getName());
         activity.setDifficulty(activityData.getDifficulty());
-        activity.setSignupList(activityData.getSignupList());
+        activity.setActivities(activityData.getActivities());
         return activityRepository.save(activity);
     }
 

@@ -48,9 +48,9 @@ public class AccessCampApplication {
             Signup archerySignup = signupRepository
                     .save(new Signup(1, 9, LocalDateTime.now(), LocalDateTime.now(), caitlin, archery));
             Signup swimmingSignup = signupRepository
-                    .save(new Signup(2, 10, LocalDateTime.now(), LocalDateTime.now(), caitlin, swimming));
-            archery.setSignupList(List.of(archerySignup, swimmingSignup));
-            caitlin.setSignupList(List.of(archerySignup, swimmingSignup));
+                    .save(new Signup(2, 10, LocalDateTime.now(), LocalDateTime.now(), lizzie, swimming));
+            archery.setActivities(List.of(archerySignup, swimmingSignup));
+            caitlin.setActivities(List.of(archerySignup, swimmingSignup));
         };
     }
 

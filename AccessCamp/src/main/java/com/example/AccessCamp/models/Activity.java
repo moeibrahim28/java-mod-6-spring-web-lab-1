@@ -22,6 +22,6 @@ public class Activity {
     private LocalDateTime updated_at;
 
     @OneToMany(mappedBy = "activity", fetch = FetchType.EAGER)
-    private List<Signup> signupList = new ArrayList<>();
+    private List<Signup> activities = new ArrayList<>();
 
 }
